@@ -200,9 +200,9 @@ def home():
     lbl.pack(anchor="n",padx=20, pady=20)
     btn = ttk.Button(text=" Select file ",width=20, command=btn_file_poisk)
     btn.pack(anchor="n",padx=20, pady=5)
-    btn = ttk.Button(text="generate password",width=20, command=gen_pas)
+    btn = ttk.Button(text="Generate password",width=20, command=gen_pas)
     btn.pack(anchor="n",padx=20, pady=5)
-    btn = ttk.Button(text="info",width=20, command=info)
+    btn = ttk.Button(text="Info",width=20, command=info)
     btn.pack(anchor="n",padx=20, pady=5)
 
 
