@@ -9,7 +9,7 @@ import pyperclip
 password = ""
 put = ""
 name = ""
-alth = "1234567890-=qwertyuiopasdfghjkl:zxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM[]~!@#$%^&*())_+?/"
+alth_pass = "1234567890-=qwertyuiopasdfghjkl:zxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM[]~!@#$%^&*())_+?/"
 
 
 
@@ -164,7 +164,7 @@ def gen_pas():
 
     pas = ""
     for i in range(15):
-        pas+=alth[randint(1,len(alth)-1)]
+        pas+=alth_pass[randint(1,len(alth_pass)-1)]
 
     lbl = Label(window, text="Generated password:",font=("Arial", 14))  
     lbl.pack(anchor="n",padx=20, pady=20)
