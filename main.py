@@ -5,11 +5,12 @@ from tkinter import filedialog as fd
 from tkinter import ttk
 from random import randint
 import pyperclip
+import json 
 
 password = ""
 put = ""
 name = ""
-alth_pass = "1234567890-=qwertyuiopasdfghjkl:zxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM[]~!@#$%^&*())_+?/"
+
 
 
 
@@ -156,6 +157,10 @@ def btn_file_poisk():
 
 
 def gen_pas():
+
+    with open('spisok_slov.json','r',encoding='utf-8') as file:
+       alth_pass = json.load(file).get("wordlist","error")
+
     def write_buf():
         pyperclip.copy(pas) 
         pyperclip.paste()
@@ -163,13 +168,22 @@ def gen_pas():
     clear_window()
 
     pas = ""
-    for i in range(15):
-        pas+=alth_pass[randint(1,len(alth_pass)-1)]
+
+    count = 0
+    while count != 5:
+        word = alth_pass[randint(1,len(alth_pass))]+"-"
+        if word not in pas:
+            pas+= word
+            count+=1
+        else:
+            pass
+        
+
 
     lbl = Label(window, text="Generated password:",font=("Arial", 14))  
     lbl.pack(anchor="n",padx=20, pady=20)
 
-    lbl = Label(window, text=f"{pas}",font=("Arial", 12))  
+    lbl = Label(window, text=f"{pas[:-1]}",font=("Arial", 12))  
     lbl.pack(anchor="n",padx=20, pady=5)
 
     btn = ttk.Button(text="     Copy     ", command=write_buf)
@@ -188,6 +202,10 @@ def info():
     lbl.pack(anchor="nw",padx=20, pady=5)  
     lbl = Label(window, text="Python v3.13.7",font=("Arial", 10))  
     lbl.pack(anchor="nw",padx=20, pady=5)  
+    lbl = Label(window, text="When encrypting large files, the program may freeze, but you should not close,",font=("Arial", 10))  
+    lbl.pack(anchor="nw",padx=20, pady=5) 
+    lbl = Label(window,text="since the process has not stopped.",font=("Arial", 10))
+    lbl.pack(anchor="nw",padx=20, pady=5) 
     btn = ttk.Button(text="     Back     ", command=home)
     btn.pack(anchor="nw",padx=20, pady=25)
 
@@ -209,8 +227,7 @@ def home():
 
 window = Tk()
 window.title("FileKey")
-icon = PhotoImage(file = "data\icon.png")
-window.iconphoto(True, icon)
+
 window.geometry("600x300")
 window.wm_geometry("+%d+%d" % size())
 home()
